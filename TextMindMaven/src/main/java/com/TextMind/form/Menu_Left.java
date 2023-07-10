@@ -5,6 +5,7 @@
 package com.TextMind.form;
 
 import com.TextMind.component.Item_People;
+import com.TextMind.swing.ScrollBar;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -22,14 +23,38 @@ public class Menu_Left extends javax.swing.JPanel {
     }
     
     private void init() {
-        menuList.setLayout(new MigLayout("fillx", "0[]0", "1[]1"));
-        showPeople();
+        sp.setVerticalScrollBar(new ScrollBar());
+        menuList.setLayout(new MigLayout("fillx", "0[]0", "0[]0"));
+        showMess();
     }
 
-    private void showPeople() {
-        for (int i = 0; i < 8; i++) {
+    private void showMess() {
+        menuList.removeAll();
+        for (int i = 0; i < 20; i++) {
             menuList.add(new Item_People("People " + i), "wrap");
         }
+        refreshMenuList();
+    }
+
+    private void showGroup() {
+        menuList.removeAll();
+        for (int i = 0; i < 15; i++) {
+            menuList.add(new Item_People("Group " + i), "wrap");
+        }
+        refreshMenuList();
+    }
+
+    private void showBox() {
+        menuList.removeAll();
+        for (int i = 0; i < 10; i++) {
+            menuList.add(new Item_People("Box " + i), "wrap");
+        }
+        refreshMenuList();
+    }
+
+    private void refreshMenuList() {
+        menuList.repaint();
+        menuList.revalidate();
     }
 
     /**
@@ -42,21 +67,44 @@ public class Menu_Left extends javax.swing.JPanel {
     private void initComponents() {
 
         menu = new javax.swing.JLayeredPane();
-        menuButton4 = new com.TextMind.component.MenuButton();
-        menuButton5 = new com.TextMind.component.MenuButton();
-        menuButton6 = new com.TextMind.component.MenuButton();
+        menuMess = new com.TextMind.component.MenuButton();
+        menuGroup = new com.TextMind.component.MenuButton();
+        menuBox = new com.TextMind.component.MenuButton();
+        sp = new javax.swing.JScrollPane();
         menuList = new javax.swing.JLayeredPane();
 
-        menu.setLayout(new javax.swing.BoxLayout(menu, javax.swing.BoxLayout.LINE_AXIS));
+        menu.setLayout(new java.awt.GridLayout(1, 3));
 
-        menuButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mess.png"))); // NOI18N
-        menu.add(menuButton4);
+        menuMess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mess.png"))); // NOI18N
+        menuMess.setSelected(true);
+        menuMess.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/messSelected.png"))); // NOI18N
+        menuMess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuMessActionPerformed(evt);
+            }
+        });
+        menu.add(menuMess);
 
-        menuButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/group.png"))); // NOI18N
-        menu.add(menuButton5);
+        menuGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/group.png"))); // NOI18N
+        menuGroup.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/groupSelected.png"))); // NOI18N
+        menuGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGroupActionPerformed(evt);
+            }
+        });
+        menu.add(menuGroup);
 
-        menuButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/letter.png"))); // NOI18N
-        menu.add(menuButton6);
+        menuBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/letter.png"))); // NOI18N
+        menuBox.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/letterSelected.png"))); // NOI18N
+        menuBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBoxActionPerformed(evt);
+            }
+        });
+        menu.add(menuBox);
+
+        sp.setBorder(null);
+        sp.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         javax.swing.GroupLayout menuListLayout = new javax.swing.GroupLayout(menuList);
         menuList.setLayout(menuListLayout);
@@ -69,28 +117,58 @@ public class Menu_Left extends javax.swing.JPanel {
             .addGap(0, 534, Short.MAX_VALUE)
         );
 
+        sp.setViewportView(menuList);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu)
-            .addComponent(menuList)
+            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+            .addComponent(sp)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuList))
+                .addComponent(sp))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuMessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMessActionPerformed
+        if (!menuMess.isSelected()) {
+            menuMess.setSelected(true);
+            menuGroup.setSelected(false);
+            menuBox.setSelected(false);
+            showMess();
+        }
+    }//GEN-LAST:event_menuMessActionPerformed
+
+    private void menuGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGroupActionPerformed
+        if (!menuGroup.isSelected()) {
+            menuMess.setSelected(false);
+            menuGroup.setSelected(true);
+            menuBox.setSelected(false);
+            showGroup();
+        }
+    }//GEN-LAST:event_menuGroupActionPerformed
+
+    private void menuBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBoxActionPerformed
+        if (!menuBox.isSelected()) {
+            menuMess.setSelected(false);
+            menuGroup.setSelected(false);
+            menuBox.setSelected(true);
+            showBox();
+        }
+    }//GEN-LAST:event_menuBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane menu;
-    private com.TextMind.component.MenuButton menuButton4;
-    private com.TextMind.component.MenuButton menuButton5;
-    private com.TextMind.component.MenuButton menuButton6;
+    private com.TextMind.component.MenuButton menuBox;
+    private com.TextMind.component.MenuButton menuGroup;
     private javax.swing.JLayeredPane menuList;
+    private com.TextMind.component.MenuButton menuMess;
+    private javax.swing.JScrollPane sp;
     // End of variables declaration//GEN-END:variables
 }
