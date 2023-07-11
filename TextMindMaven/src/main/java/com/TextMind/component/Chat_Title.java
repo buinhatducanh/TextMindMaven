@@ -4,6 +4,8 @@
  */
 package com.TextMind.component;
 
+import java.awt.Color;
+
 /**
  *
  * @author KHOA
@@ -16,6 +18,20 @@ public class Chat_Title extends javax.swing.JPanel {
     public Chat_Title() {
         initComponents();
     }
+    
+    public void setUserName(String userName) {
+        lblName.setText(userName);
+    }
+    
+    public void statusActive() {
+        lblStatus.setText("Active now");
+        lblStatus.setForeground(new Color(40, 147, 59));
+    }
+    
+    public void setStatusText(String text) {
+        lblStatus.setText(text);
+        lblStatus.setForeground(new Color(160, 160, 160));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,19 +42,40 @@ public class Chat_Title extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        layer = new javax.swing.JLayeredPane();
+        lblName = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
+
+        layer.setLayout(new java.awt.GridLayout(0, 1));
+
+        lblName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblName.setForeground(new java.awt.Color(71, 71, 71));
+        lblName.setText("Name");
+        layer.add(lblName);
+
+        lblStatus.setForeground(new java.awt.Color(0, 204, 0));
+        lblStatus.setText("Active Now");
+        layer.add(lblStatus);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(layer, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(250, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addComponent(layer)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLayeredPane layer;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblStatus;
     // End of variables declaration//GEN-END:variables
 }

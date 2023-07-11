@@ -22,6 +22,8 @@ public class Chat_Right extends javax.swing.JLayeredPane  {
     
     public void setText(String text) {
         txt.setText(text);
+        txt.setTime("17:55 PM");
+        txt.seen();
     }
 
     /**
