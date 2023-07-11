@@ -40,7 +40,7 @@
       <SubComponents>
         <Component class="com.TextMind.component.MenuButton" name="menuMess">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+            <Property name="iconSimple" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/mess.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
@@ -57,6 +57,9 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/group.png"/>
             </Property>
+            <Property name="iconSimple" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/group.png"/>
+            </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/groupSelected.png"/>
             </Property>
@@ -68,6 +71,9 @@
         <Component class="com.TextMind.component.MenuButton" name="menuBox">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/letter.png"/>
+            </Property>
+            <Property name="iconSimple" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/letter.png"/>
             </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">

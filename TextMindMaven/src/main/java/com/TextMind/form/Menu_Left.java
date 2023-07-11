@@ -75,7 +75,7 @@ public class Menu_Left extends javax.swing.JPanel {
 
         menu.setLayout(new java.awt.GridLayout(1, 3));
 
-        menuMess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mess.png"))); // NOI18N
+        menuMess.setIconSimple(new javax.swing.ImageIcon(getClass().getResource("/images/mess.png"))); // NOI18N
         menuMess.setSelected(true);
         menuMess.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/messSelected.png"))); // NOI18N
         menuMess.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +86,7 @@ public class Menu_Left extends javax.swing.JPanel {
         menu.add(menuMess);
 
         menuGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/group.png"))); // NOI18N
+        menuGroup.setIconSimple(new javax.swing.ImageIcon(getClass().getResource("/images/group.png"))); // NOI18N
         menuGroup.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/groupSelected.png"))); // NOI18N
         menuGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +96,7 @@ public class Menu_Left extends javax.swing.JPanel {
         menu.add(menuGroup);
 
         menuBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/letter.png"))); // NOI18N
+        menuBox.setIconSimple(new javax.swing.ImageIcon(getClass().getResource("/images/letter.png"))); // NOI18N
         menuBox.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/letterSelected.png"))); // NOI18N
         menuBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +125,7 @@ public class Menu_Left extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+            .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 159, Short.MAX_VALUE)
             .addComponent(sp)
         );
         layout.setVerticalGroup(

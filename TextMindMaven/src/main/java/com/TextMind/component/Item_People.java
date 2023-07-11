@@ -49,8 +49,6 @@ public class Item_People extends javax.swing.JPanel {
         imageAvatar1 = new com.TextMind.swing.ImageAvatar();
         lblName = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(230, 230, 230));
-
         imageAvatar1.setBorderSize(1);
         imageAvatar1.setImage(new javax.swing.ImageIcon(getClass().getResource("/images/userNonActive.png"))); // NOI18N
 
