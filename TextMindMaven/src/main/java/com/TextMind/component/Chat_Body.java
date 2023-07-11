@@ -6,6 +6,8 @@ package com.TextMind.component;
 
 import com.TextMind.swing.ScrollBar;
 import java.awt.Color;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -24,16 +26,16 @@ public class Chat_Body extends javax.swing.JPanel {
         addItemRight("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.") ; 
         addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", "Nhân") ; 
         addItemRight("hello\nhellooo\nheloolololo");
-        addItemLeft("hello\nhellooo\nheloolololo", "Hoàn");
+        addItemLeft("hello\nhellooo\nheloolololo", "Hoàn", new ImageIcon(getClass().getResource("/images/avatar.jpg")));
         addDate("01/01/2025") ;
-        addItemRight("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.") ; 
-        addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", "Nhân") ; 
+        addItemRight("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", new ImageIcon(getClass().getResource("/images/avatar.jpg"))) ; 
+        addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", "Nhân", new ImageIcon(getClass().getResource("/images/avatar.jpg")), new ImageIcon(getClass().getResource("/images/avatar.jpg"))) ; 
         addItemRight("hello\nhellooo\nheloolololo");
         addItemLeft("hello\nhellooo\nheloolololo", "Hoàn");
         addDate("Today") ;
         addItemRight("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.") ; 
         addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", "Nhân") ; 
-        addItemRight("hello\nhellooo\nheloolololo");
+        addItemRight("hello\nhellooo\nheloolololo", new ImageIcon(getClass().getResource("/images/avatar.jpg")));
     }
     
     private void init() {
@@ -42,9 +44,11 @@ public class Chat_Body extends javax.swing.JPanel {
         sp.getVerticalScrollBar().setBackground(Color.WHITE);
     }
     
-    public void addItemLeft(String text, String user) {
+    public void addItemLeft(String text, String user, Icon... image) {
         Chat_Left_With_Profile item = new Chat_Left_With_Profile();
         item.setText(text);
+        item.setImage(image);
+        item.setTime();
         item.setUserProfile(user);
         body.add(item, "wrap, w 100::80%");
         body.repaint();
@@ -52,9 +56,10 @@ public class Chat_Body extends javax.swing.JPanel {
     }
 
     
-    public void addItemRight(String text) {
+    public void addItemRight(String text, Icon... image) {
         Chat_Right item = new Chat_Right();
         item.setText(text);
+        item.setImage(image);
         body.add(item, "wrap, al right, w 100::80%");
         body.repaint();
         body.revalidate();

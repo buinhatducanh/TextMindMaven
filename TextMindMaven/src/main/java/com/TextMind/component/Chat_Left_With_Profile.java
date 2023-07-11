@@ -22,10 +22,13 @@ public class Chat_Left_With_Profile extends javax.swing.JLayeredPane  {
     }
     
     public void setText(String text) {
-        txt.setText(text);
-        txt.setTime("17:50 PM");
-        txt.sendSuccess();
+        if (text.equals("")) {
+            txt.hideText();
+        } else {
+            txt.setText(text);
+        }
     }
+
     
     public void setUserProfile(String user) {
         txt.setUserProfile(user);
@@ -33,6 +36,14 @@ public class Chat_Left_With_Profile extends javax.swing.JLayeredPane  {
     
     public void setImageProfile(Icon image) {
         IaImage.setImage(image);
+    }
+    
+    public void setImage(Icon... image) {
+        txt.setImage(false, image);
+    }
+    
+    public void setTime() {
+        txt.setTime("17:50 PM");
     }
 
     /**

@@ -4,38 +4,43 @@
  */
 package com.TextMind.component;
 
-import java.awt.Color;
+import com.TextMind.swing.PictureBox;
+import java.awt.Dimension;
 import javax.swing.Icon;
+import net.miginfocom.swing.MigLayout;
 
 /**
  *
  * @author KHOA
  */
-public class Chat_Left extends javax.swing.JLayeredPane  {
+public class Chat_Image extends javax.swing.JLayeredPane {
 
     /**
-     * Creates new form Chat_Left
+     * Creates new form Chat_Image
      */
-    public Chat_Left() {
+    public Chat_Image(boolean right) {
         initComponents();
-        txt.setBackground(new Color(242, 242, 242));
+        setLayout(new MigLayout("", "0[" + (right ? "right" : "left") + "]0", "3[]3"));
     }
     
-    public void setText(String text) {
-        if (text.equals("")) {
-            txt.hideText();
-        } else {
-            txt.setText(text);
+    public void addImage(Icon... images) {
+        for (Icon image : images) {
+            PictureBox pic = new PictureBox();
+            pic.setPreferredSize(getAutoSize(image, 200, 200));
+            pic.setImage(image);
+            add(pic, "wrap");
         }
-        txt.sendSuccess();
     }
     
-    public void setImage(Icon... image) {
-        txt.setImage(false, image);
-    }
-
-    public void setTime() {
-        txt.setTime("10:30 PM");   
+    private Dimension getAutoSize(Icon image, int w, int h) {
+        int iw = image.getIconWidth();
+        int ih = image.getIconHeight();
+        double xScale = (double) w / iw;
+        double yScale = (double) h / ih;
+        double scale = Math.min(xScale, yScale);
+        int width = (int) (scale * iw);
+        int height = (int) (scale * ih);
+        return new Dimension(width, height);
     }
 
     /**
@@ -47,24 +52,19 @@ public class Chat_Left extends javax.swing.JLayeredPane  {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txt = new com.TextMind.component.Chat_Item();
-
-        setLayer(txt, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.TextMind.component.Chat_Item txt;
     // End of variables declaration//GEN-END:variables
 }

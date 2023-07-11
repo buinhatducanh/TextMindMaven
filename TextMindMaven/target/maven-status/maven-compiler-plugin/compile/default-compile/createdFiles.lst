@@ -17,6 +17,7 @@ com\TextMind\component\Chat_Item.class
 com\TextMind\main\main.class
 com\TextMind\form\Menu_Left.class
 com\TextMind\swing\Line.class
+com\TextMind\component\Chat_Image.class
 com\TextMind\component\Chat_Left_With_Profile.class
 com\TextMind\component\Chat_Body.class
 com\TextMind\form\Home.class
@@ -26,6 +27,7 @@ com\TextMind\form\Menu_Left$1.class
 com\TextMind\main\main$2.class
 com\TextMind\swing\ModernScrollBarUI$InvisibleScrollBarButton.class
 com\TextMind\main\main$5.class
+com\TextMind\swing\PictureBox.class
 com\TextMind\component\Chat_Date.class
 com\TextMind\swing\JIMSendTextPane$WarpLabelView.class
 com\TextMind\form\Chat.class
