@@ -20,17 +20,19 @@ public class Chat_Body extends javax.swing.JPanel {
     public Chat_Body() {
         initComponents();
         init() ;
-        addItemLeft("hello\nhellooo\nheloolololo");
+        addItemLeft("hello\nhellooo\nheloolololo", "Hoàn");
         addItemRight("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.") ; 
-        addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.") ; 
+        addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", "Nhân") ; 
         addItemRight("hello\nhellooo\nheloolololo");
-        addItemLeft("hello\nhellooo\nheloolololo");
+        addItemLeft("hello\nhellooo\nheloolololo", "Hoàn");
+        addDate("01/01/2025") ;
         addItemRight("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.") ; 
-        addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.") ; 
+        addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", "Nhân") ; 
         addItemRight("hello\nhellooo\nheloolololo");
-        addItemLeft("hello\nhellooo\nheloolololo");
+        addItemLeft("hello\nhellooo\nheloolololo", "Hoàn");
+        addDate("Today") ;
         addItemRight("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.") ; 
-        addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.") ; 
+        addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", "Nhân") ; 
         addItemRight("hello\nhellooo\nheloolololo");
     }
     
@@ -40,18 +42,28 @@ public class Chat_Body extends javax.swing.JPanel {
         sp.getVerticalScrollBar().setBackground(Color.WHITE);
     }
     
-    public void addItemLeft(String text) {
-        Chat_Left item = new Chat_Left();
+    public void addItemLeft(String text, String user) {
+        Chat_Left_With_Profile item = new Chat_Left_With_Profile();
         item.setText(text);
-        body.add(item, "wrap, w ::80%");    
+        item.setUserProfile(user);
+        body.add(item, "wrap, w 100::80%");
         body.repaint();
         body.revalidate();
     }
+
     
     public void addItemRight(String text) {
         Chat_Right item = new Chat_Right();
         item.setText(text);
-        body.add(item, "wrap, al right, w ::80%");
+        body.add(item, "wrap, al right, w 100::80%");
+        body.repaint();
+        body.revalidate();
+    }
+    
+    public void addDate(String date) {
+        Chat_Date item = new Chat_Date();
+        item.setDate(date);
+        body.add(item, "wrap, al center");
         body.repaint();
         body.revalidate();
     }
