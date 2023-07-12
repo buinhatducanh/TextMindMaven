@@ -4,9 +4,12 @@
  */
 package com.TextMind.main;
 
+import com.TextMind.event.EventImageView;
+import com.TextMind.event.PublicEvent;
 import com.TextMind.swing.ComponentResizer;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -31,6 +34,24 @@ public class main extends javax.swing.JFrame {
         com.setMinimumSize(new Dimension(800, 500));
         com.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
         com.setSnapSize(new Dimension(10, 10));
+        viewImage.setVisible(false);
+        home.setVisible(true);
+        initEvent() ;
+    }
+    
+    private void initEvent() {
+        PublicEvent.getInstance().addEventImageView(new EventImageView() {
+            @Override
+            public void viewImage(Icon image) {
+                viewImage.viewImage(image);
+            }
+
+            @Override
+            public void saveImage(Icon image) {
+                System.out.println("Chưa làm chức năng tải hình");
+            }
+
+        });
     }
 
     /**
@@ -48,7 +69,8 @@ public class main extends javax.swing.JFrame {
         btnMinimize = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         body = new javax.swing.JLayeredPane();
-        home1 = new com.TextMind.form.Home();
+        viewImage = new com.TextMind.form.View_Image();
+        home = new com.TextMind.form.Home();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -109,8 +131,10 @@ public class main extends javax.swing.JFrame {
                     .addComponent(btnClose)))
         );
 
-        body.setLayout(new java.awt.BorderLayout());
-        body.add(home1, java.awt.BorderLayout.CENTER);
+        body.setLayout(new java.awt.CardLayout());
+        body.setLayer(viewImage, javax.swing.JLayeredPane.POPUP_LAYER);
+        body.add(viewImage, "card3");
+        body.add(home, "card2");
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
@@ -222,7 +246,8 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPanel border;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnMinimize;
-    private com.TextMind.form.Home home1;
+    private com.TextMind.form.Home home;
     private javax.swing.JPanel title;
+    private com.TextMind.form.View_Image viewImage;
     // End of variables declaration//GEN-END:variables
 }

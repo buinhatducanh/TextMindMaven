@@ -4,9 +4,15 @@
  */
 package com.TextMind.component;
 
+import com.TextMind.event.PublicEvent;
 import com.TextMind.swing.PictureBox;
+import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.Icon;
+import javax.swing.SwingUtilities;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -28,11 +34,18 @@ public class Chat_Image extends javax.swing.JLayeredPane {
             PictureBox pic = new PictureBox();
             pic.setPreferredSize(getAutoSize(image, 200, 200));
             pic.setImage(image);
+            addEvent(pic, image);
             add(pic, "wrap");
         }
     }
     
     private Dimension getAutoSize(Icon image, int w, int h) {
+        if (w > image.getIconWidth()) {
+            w = image.getIconWidth();
+        }
+        if (h > image.getIconHeight()) {
+            h = image.getIconHeight();
+        }
         int iw = image.getIconWidth();
         int ih = image.getIconHeight();
         double xScale = (double) w / iw;
@@ -41,6 +54,18 @@ public class Chat_Image extends javax.swing.JLayeredPane {
         int width = (int) (scale * iw);
         int height = (int) (scale * ih);
         return new Dimension(width, height);
+    }
+    
+    private void addEvent(Component com, Icon image) {
+        com.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        com.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                if (SwingUtilities.isLeftMouseButton(me)) {
+                    PublicEvent.getInstance().getEventImageView().viewImage(image);
+                }
+            }
+        });
     }
 
     /**
