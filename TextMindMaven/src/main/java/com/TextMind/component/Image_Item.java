@@ -46,6 +46,7 @@ public class Image_Item extends javax.swing.JLayeredPane {
 
         progress1.setForeground(new java.awt.Color(255, 255, 255));
         progress1.setValue(50);
+        progress1.setProgressType(com.TextMind.swing.Progress.ProgressType.CANCEL);
 
         pic.setLayer(progress1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 

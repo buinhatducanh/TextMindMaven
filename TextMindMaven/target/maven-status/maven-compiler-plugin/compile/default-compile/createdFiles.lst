@@ -34,6 +34,7 @@ com\TextMind\form\View_Image$1.class
 com\TextMind\swing\ComponentResizer.class
 com\TextMind\form\Menu_Left$1.class
 com\TextMind\main\main$2.class
+com\TextMind\swing\Progress$ProgressType.class
 com\TextMind\swing\ModernScrollBarUI$InvisibleScrollBarButton.class
 com\TextMind\main\main$5.class
 com\TextMind\swing\blurHash\Util.class
@@ -42,6 +43,7 @@ com\TextMind\component\Chat_Date.class
 com\TextMind\event\EventImageView.class
 com\TextMind\swing\JIMSendTextPane$WarpLabelView.class
 com\TextMind\form\Chat.class
+com\TextMind\component\Chat_File.class
 com\TextMind\form\View_Image$2.class
 com\TextMind\form\Menu_Left$2.class
 com\TextMind\main\main$1.class

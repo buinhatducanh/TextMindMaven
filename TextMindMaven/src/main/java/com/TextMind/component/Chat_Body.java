@@ -37,6 +37,8 @@ public class Chat_Body extends javax.swing.JPanel {
         addItemRight("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.") ; 
         addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", "Nhân") ; 
         addItemRight("hello\nhellooo\nheloolololo", new ImageIcon(getClass().getResource("/images/avatar.jpg")));
+        addItemFile("Gửi chơi", "Nhân Chần", "tiểu mu.exe", "1 TB") ;
+        addItemFileRight("Gửi lại", "mủ tiêu.exe", "10 MB") ;
     }
     
     private void init() {
@@ -80,6 +82,26 @@ public class Chat_Body extends javax.swing.JPanel {
         Chat_Date item = new Chat_Date();
         item.setDate(date);
         body.add(item, "wrap, al center");
+        body.repaint();
+        body.revalidate();
+    }
+    
+    public void addItemFile(String text, String user, String fileName, String fileSize) {
+        Chat_Left_With_Profile item = new Chat_Left_With_Profile();
+        item.setText(text);
+        item.setFile(fileName, fileSize);
+        item.setTime();
+        item.setUserProfile(user);
+        body.add(item, "wrap, w 100::80%");
+        body.repaint();
+        body.revalidate();
+    }
+    
+    public void addItemFileRight(String text, String fileName, String fileSize) {
+        Chat_Right item = new Chat_Right();
+        item.setText(text);
+        item.setFile(fileName, fileSize);
+        body.add(item, "wrap, al right, w 100::80%");
         body.repaint();
         body.revalidate();
     }

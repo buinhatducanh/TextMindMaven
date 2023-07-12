@@ -49,6 +49,10 @@ public class Chat_Left_With_Profile extends javax.swing.JLayeredPane  {
     public void setTime() {
         txt.setTime("17:50 PM");
     }
+    
+    public void setFile(String fileName, String fileSize) {
+        txt.setFile(fileName, fileSize);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
