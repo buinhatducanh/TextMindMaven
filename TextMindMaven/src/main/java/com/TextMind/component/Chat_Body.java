@@ -28,10 +28,11 @@ public class Chat_Body extends javax.swing.JPanel {
         addItemRight("hello\nhellooo\nheloolololo");
         addItemLeft("hello\nhellooo\nheloolololo", "Hoàn", new ImageIcon(getClass().getResource("/images/avatar.jpg")));
         addDate("01/01/2025") ;
+        String img[] = {"LQOx%oMx}Y%NDhtR-;Vs$,jER4SO"};
         addItemRight("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", new ImageIcon(getClass().getResource("/images/avatar.jpg"))) ; 
         addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", "Nhân", new ImageIcon(getClass().getResource("/images/avatar.jpg")), new ImageIcon(getClass().getResource("/images/avatar.jpg"))) ; 
         addItemRight("hello\nhellooo\nheloolololo");
-        addItemLeft("hello\nhellooo\nheloolololo", "Hoàn");
+        addItemLeft("hello\nhellooo\nheloolololo", "Hoàn", img);
         addDate("Today") ;
         addItemRight("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.") ; 
         addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", "Nhân") ; 
@@ -55,6 +56,16 @@ public class Chat_Body extends javax.swing.JPanel {
         body.revalidate();
     }
 
+    public void addItemLeft(String text, String user, String[] image) {
+        Chat_Left_With_Profile item = new Chat_Left_With_Profile();
+        item.setText(text);
+        item.setImage(image);
+        item.setTime();
+        item.setUserProfile(user);
+        body.add(item, "wrap, w 100::80%"); 
+        body.repaint();
+        body.revalidate();
+    }
     
     public void addItemRight(String text, Icon... image) {
         Chat_Right item = new Chat_Right();

@@ -1,5 +1,7 @@
 com\TextMind\form\Menu_Right.class
 com\TextMind\component\Chat_Bottom.class
+com\TextMind\swing\blurHash\BlurHash.class
+com\TextMind\component\Image_Item.class
 com\TextMind\component\Chat_Left.class
 com\TextMind\main\main$4.class
 com\TextMind\swing\JIMSendTextPane.class
@@ -10,9 +12,11 @@ com\TextMind\swing\ModernScrollBarUI.class
 com\TextMind\component\Chat_Right.class
 com\TextMind\swing\JIMSendTextPane$WarpColumnFactory.class
 com\TextMind\event\PublicEvent.class
+com\TextMind\swing\blurHash\Base83.class
 com\TextMind\swing\ImageAvatar.class
 com\TextMind\main\main$3.class
 com\TextMind\form\Menu_Left$3.class
+com\TextMind\swing\Progress.class
 com\TextMind\swing\ScrollBar.class
 com\TextMind\form\View_Image.class
 com\TextMind\main\main$6.class
@@ -21,6 +25,7 @@ com\TextMind\main\main.class
 com\TextMind\form\Menu_Left.class
 com\TextMind\swing\Line.class
 com\TextMind\component\Chat_Image.class
+com\TextMind\swing\blurHash\SRGB.class
 com\TextMind\component\Chat_Left_With_Profile.class
 com\TextMind\component\Chat_Body.class
 com\TextMind\form\Home.class
@@ -31,6 +36,7 @@ com\TextMind\form\Menu_Left$1.class
 com\TextMind\main\main$2.class
 com\TextMind\swing\ModernScrollBarUI$InvisibleScrollBarButton.class
 com\TextMind\main\main$5.class
+com\TextMind\swing\blurHash\Util.class
 com\TextMind\swing\PictureBox.class
 com\TextMind\component\Chat_Date.class
 com\TextMind\event\EventImageView.class
@@ -41,3 +47,4 @@ com\TextMind\form\Menu_Left$2.class
 com\TextMind\main\main$1.class
 com\TextMind\component\Chat_Image$1.class
 com\TextMind\swing\JIMSendTextPane$WarpEditorKit.class
+com\TextMind\swing\ProgressCircleUI.class
