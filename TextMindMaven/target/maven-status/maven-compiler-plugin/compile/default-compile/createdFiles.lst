@@ -4,6 +4,7 @@ com\TextMind\swing\blurHash\BlurHash.class
 com\TextMind\component\Image_Item.class
 com\TextMind\component\Chat_Left.class
 com\TextMind\main\main$4.class
+com\TextMind\swing\PanelSlide.class
 com\TextMind\swing\JIMSendTextPane.class
 com\TextMind\component\Item_People$1.class
 com\TextMind\component\MenuButton.class
@@ -15,18 +16,21 @@ com\TextMind\swing\JIMSendTextPane$WarpColumnFactory.class
 com\TextMind\event\PublicEvent.class
 com\TextMind\swing\blurHash\Base83.class
 com\TextMind\swing\ImageAvatar.class
+com\TextMind\form\P_Login$1.class
 com\TextMind\main\main$3.class
 com\TextMind\form\Menu_Left$3.class
 com\TextMind\swing\Progress.class
 com\TextMind\swing\ScrollBar.class
 com\TextMind\form\View_Image.class
 com\TextMind\component\Chat_Body$1.class
+com\TextMind\form\Login.class
 com\TextMind\main\main$6.class
 com\TextMind\component\Chat_Item.class
 com\TextMind\main\main.class
 com\TextMind\form\Menu_Left.class
 com\TextMind\swing\Line.class
 com\TextMind\component\Chat_Image.class
+com\TextMind\swing\PanelSlide$1.class
 com\TextMind\component\Chat_Bottom$1.class
 com\TextMind\swing\blurHash\SRGB.class
 com\TextMind\component\Chat_Left_With_Profile.class
@@ -51,6 +55,7 @@ com\TextMind\component\Chat_File.class
 com\TextMind\form\View_Image$2.class
 com\TextMind\form\Menu_Left$2.class
 com\TextMind\main\main$1.class
+com\TextMind\form\P_Login.class
 com\TextMind\component\Chat_Image$1.class
 com\TextMind\component\Chat_Bottom$2.class
 com\TextMind\swing\JIMSendTextPane$WarpEditorKit.class

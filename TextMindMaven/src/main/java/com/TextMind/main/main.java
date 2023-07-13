@@ -69,6 +69,7 @@ public class main extends javax.swing.JFrame {
         btnMinimize = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         body = new javax.swing.JLayeredPane();
+        login = new com.TextMind.form.Login();
         viewImage = new com.TextMind.form.View_Image();
         home = new com.TextMind.form.Home();
 
@@ -132,6 +133,7 @@ public class main extends javax.swing.JFrame {
         );
 
         body.setLayout(new java.awt.CardLayout());
+        body.add(login, "card4");
         body.setLayer(viewImage, javax.swing.JLayeredPane.POPUP_LAYER);
         body.add(viewImage, "card3");
         body.add(home, "card2");
@@ -247,6 +249,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnMinimize;
     private com.TextMind.form.Home home;
+    private com.TextMind.form.Login login;
     private javax.swing.JPanel title;
     private com.TextMind.form.View_Image viewImage;
     // End of variables declaration//GEN-END:variables

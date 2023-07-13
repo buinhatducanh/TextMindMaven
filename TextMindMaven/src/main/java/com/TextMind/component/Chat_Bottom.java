@@ -56,12 +56,12 @@ public class Chat_Bottom extends javax.swing.JPanel {
         panel.setLayout(new MigLayout("filly", "0[]0", "0[bottom]0"));
         panel.setPreferredSize(new Dimension(30, 28));
         panel.setBackground(Color.WHITE);
-        JButton cmd = new JButton();
-        cmd.setBorder(null);
-        cmd.setContentAreaFilled(false);
-        cmd.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        cmd.setIcon(new ImageIcon(getClass().getResource("/images/send.png")));
-        cmd.addActionListener(new ActionListener() {
+        JButton btn = new JButton();
+        btn.setBorder(null);
+        btn.setContentAreaFilled(false);
+        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.setIcon(new ImageIcon(getClass().getResource("/images/send.png")));
+        btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String text = txt.getText().trim();
@@ -75,7 +75,7 @@ public class Chat_Bottom extends javax.swing.JPanel {
                 }
             }
         });
-        panel.add(cmd);
+        panel.add(btn);
         add(panel);
     }
 
