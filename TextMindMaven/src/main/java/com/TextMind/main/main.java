@@ -5,8 +5,10 @@
 package com.TextMind.main;
 
 import com.TextMind.event.EventImageView;
+import com.TextMind.event.EventMain;
 import com.TextMind.event.PublicEvent;
 import com.TextMind.swing.ComponentResizer;
+import com.formdev.flatlaf.intellijthemes.FlatArcIJTheme;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.Icon;
@@ -34,12 +36,25 @@ public class main extends javax.swing.JFrame {
         com.setMinimumSize(new Dimension(830, 500));
         com.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
         com.setSnapSize(new Dimension(10, 10));
+        login.setVisible(true);
+        loading.setVisible(false);
         viewImage.setVisible(false);
-        home.setVisible(true);
-        initEvent() ;
+        home.setVisible(false);
+        initEvent();
     }
     
     private void initEvent() {
+        PublicEvent.getInstance().addEventMain(new EventMain() {
+            @Override
+            public void showLoading(boolean show) {
+                loading.setVisible(show);
+            }
+
+            @Override
+            public void initChat() {
+                home.setVisible(true);
+            }
+        });
         PublicEvent.getInstance().addEventImageView(new EventImageView() {
             @Override
             public void viewImage(Icon image) {
@@ -48,7 +63,7 @@ public class main extends javax.swing.JFrame {
 
             @Override
             public void saveImage(Icon image) {
-                System.out.println("Chưa làm chức năng tải hình");
+                System.out.println("Chưa xây dựng chức năng tải hình");
             }
 
         });
@@ -69,6 +84,7 @@ public class main extends javax.swing.JFrame {
         btnMinimize = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         body = new javax.swing.JLayeredPane();
+        loading = new com.TextMind.form.Loading();
         login = new com.TextMind.form.Login();
         viewImage = new com.TextMind.form.View_Image();
         home = new com.TextMind.form.Home();
@@ -133,6 +149,7 @@ public class main extends javax.swing.JFrame {
         );
 
         body.setLayout(new java.awt.CardLayout());
+        body.add(loading, "card5");
         body.add(login, "card4");
         body.setLayer(viewImage, javax.swing.JLayeredPane.POPUP_LAYER);
         body.add(viewImage, "card3");
@@ -210,32 +227,9 @@ public class main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+        FlatArcIJTheme.setup() ;
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new main().setVisible(true);
             }
@@ -249,6 +243,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnMinimize;
     private com.TextMind.form.Home home;
+    private com.TextMind.form.Loading loading;
     private com.TextMind.form.Login login;
     private javax.swing.JPanel title;
     private com.TextMind.form.View_Image viewImage;

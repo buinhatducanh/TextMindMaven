@@ -4,6 +4,9 @@
  */
 package com.TextMind.form;
 
+import com.TextMind.event.EventLogin;
+import com.TextMind.event.PublicEvent;
+
 /**
  *
  * @author KHOA
@@ -19,8 +22,42 @@ public class Login extends javax.swing.JPanel {
     }
     
     private void init() {
+        PublicEvent.getInstance().addEventLogin(new EventLogin() {
+            @Override
+            public void login() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        PublicEvent.getInstance().getEventMain().showLoading(true);
+                        try {
+                            Thread.sleep(3000); //  for test
+                        } catch (InterruptedException e) {
+                        }
+                        PublicEvent.getInstance().getEventMain().showLoading(false);
+                        PublicEvent.getInstance().getEventMain().initChat();
+                        setVisible(false);
+                    }
+                }).start();
+            }
+
+            @Override
+            public void register() {
+                System.out.println("Register");
+            }
+
+            @Override
+            public void goRegister() {
+                slide.show(1);
+            }
+
+            @Override
+            public void goLogin() {
+                slide.show(0);
+            }
+        });
         P_Login login = new P_Login() ;
-        slide.init(login) ;
+        P_Register register = new P_Register() ;
+        slide.init(login, register) ;
     }
 
     /**
@@ -78,7 +115,7 @@ public class Login extends javax.swing.JPanel {
         );
         slideLayout.setVerticalGroup(
             slideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 317, Short.MAX_VALUE)
+            .addGap(0, 377, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -89,7 +126,9 @@ public class Login extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(slide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(slide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -126,10 +165,11 @@ public class Login extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pictureBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
+                        .addGap(130, 130, 130)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, 0)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
 

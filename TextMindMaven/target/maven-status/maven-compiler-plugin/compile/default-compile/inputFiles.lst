@@ -2,13 +2,16 @@ F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\com
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\event\PublicEvent.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\swing\Line.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\form\Menu_Right.java
+F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\form\Loading.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\component\Chat_Left.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\form\View_Image.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\component\Chat_Title.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\swing\PictureBox.java
+F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\event\EventLogin.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\component\Chat_Image.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\event\EventImageView.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\form\Chat.java
+F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\form\P_Register.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\main\main.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\form\P_Login.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\component\Chat_Body.java
@@ -31,6 +34,7 @@ F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\eve
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\swing\blurHash\BlurHash.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\swing\ProgressCircleUI.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\component\Chat_Left_With_Profile.java
+F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\event\EventMain.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\swing\PanelSlide.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\component\Chat_Date.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\swing\Progress.java
