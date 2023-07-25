@@ -13,7 +13,8 @@ import com.TextMind.model.Model_Register;
 public interface EventLogin {
     public void login();
 
-    public void register(Model_Register data, EventMessage message);
+//    public void register(Model_Register data, EventMessage message);
+    public void register() ;
 
     public void goRegister();
 

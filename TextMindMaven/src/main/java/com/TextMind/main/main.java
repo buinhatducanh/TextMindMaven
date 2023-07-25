@@ -36,11 +36,28 @@ public class main extends javax.swing.JFrame {
         com.setMinimumSize(new Dimension(830, 500));
         com.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
         com.setSnapSize(new Dimension(10, 10));
-        login.setVisible(true);
-        loading.setVisible(false);
-        viewImage.setVisible(false);
-        home.setVisible(false);
+//        loading.setVisible(false);        
+//        home.setVisible(false);
+//        viewImage.setVisible(true);
         initEvent();
+        runMain() ;
+    }
+    
+    private void runMain() {
+        new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        viewImage.setVisible(false);
+                        PublicEvent.getInstance().getEventMain().showLoading(true);
+                        try {
+                            Thread.sleep(3000); 
+                        } catch (InterruptedException e) {
+                        }
+                        PublicEvent.getInstance().getEventMain().showLoading(false);
+                        PublicEvent.getInstance().getEventMain().initChat();
+//                        setVisible(false);
+                    }
+                }).start();
     }
     
     private void initEvent() {
@@ -84,9 +101,8 @@ public class main extends javax.swing.JFrame {
         btnMinimize = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         body = new javax.swing.JLayeredPane();
-        loading = new com.TextMind.form.Loading();
-        login = new com.TextMind.form.Login();
         viewImage = new com.TextMind.form.View_Image();
+        loading = new com.TextMind.form.Loading();
         home = new com.TextMind.form.Home();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -149,10 +165,9 @@ public class main extends javax.swing.JFrame {
         );
 
         body.setLayout(new java.awt.CardLayout());
-        body.add(loading, "card5");
-        body.add(login, "card4");
         body.setLayer(viewImage, javax.swing.JLayeredPane.POPUP_LAYER);
         body.add(viewImage, "card3");
+        body.add(loading, "card5");
         body.add(home, "card2");
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -244,7 +259,6 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JButton btnMinimize;
     private com.TextMind.form.Home home;
     private com.TextMind.form.Loading loading;
-    private com.TextMind.form.Login login;
     private javax.swing.JPanel title;
     private com.TextMind.form.View_Image viewImage;
     // End of variables declaration//GEN-END:variables

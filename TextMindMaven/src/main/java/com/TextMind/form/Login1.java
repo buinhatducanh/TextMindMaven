@@ -13,12 +13,12 @@ import com.TextMind.model.Model_Register;
  *
  * @author KHOA
  */
-public class Login extends javax.swing.JPanel {
+public class Login1 extends javax.swing.JPanel {
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login1() {
         initComponents();
         init() ;
     }
@@ -43,7 +43,7 @@ public class Login extends javax.swing.JPanel {
             }
 
             @Override
-            public void register(Model_Register data, EventMessage message) {
+            public void register() {
                 System.out.println("Register");
             }
 

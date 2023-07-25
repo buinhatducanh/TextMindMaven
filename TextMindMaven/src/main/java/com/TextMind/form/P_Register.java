@@ -141,29 +141,30 @@ public class P_Register extends javax.swing.JPanel {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        String username = txtUsername.getText().trim() ;
-        String password = String.valueOf(txtPassword.getPassword()) ;
-        String confirmPassword = String.valueOf(txtConfirm.getPassword());
-        if (username.equals("")) {
-            txtUsername.grabFocus();
-        } else if (password.equals("")) {
-            txtPassword.grabFocus();
-        } else if (!password.equals(confirmPassword)) {
-            txtPassword.grabFocus();
-        } else {
-            Model_Register data = new Model_Register(username, password) ;
-            PublicEvent.getInstance().getEventLogin().register(data, new EventMessage() {
-                @Override
-                public void callMessage(Model_Message message) {
-                    if (!message.isAction()) {
-                        lblError.setText(message.getMessage());
-                    } else {
-                        PublicEvent.getInstance().getEventLogin().login();
-                    }
-                }
-                
-            });
-        }        
+//        String username = txtUsername.getText().trim() ;
+//        String password = String.valueOf(txtPassword.getPassword()) ;
+//        String confirmPassword = String.valueOf(txtConfirm.getPassword());
+//        if (username.equals("")) {
+//            txtUsername.grabFocus();
+//        } else if (password.equals("")) {
+//            txtPassword.grabFocus();
+//        } else if (!password.equals(confirmPassword)) {
+//            txtPassword.grabFocus();
+//        } else {
+//            Model_Register data = new Model_Register(username, password) ;
+//            PublicEvent.getInstance().getEventLogin().register(data, new EventMessage() {
+//                @Override
+//                public void callMessage(Model_Message message) {
+//                    if (!message.isAction()) {
+//                        lblError.setText(message.getMessage());
+//                    } else {
+//                        PublicEvent.getInstance().getEventLogin().login();
+//                    }
+//                }
+//                
+//            });
+//        }        
+          PublicEvent.getInstance().getEventLogin().register();
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
