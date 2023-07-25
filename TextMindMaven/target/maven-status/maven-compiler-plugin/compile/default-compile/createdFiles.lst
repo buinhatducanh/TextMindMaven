@@ -7,9 +7,11 @@ com\TextMind\event\PublicEvent.class
 com\TextMind\swing\blurHash\Base83.class
 com\TextMind\form\P_Login$1.class
 com\TextMind\main\main$3.class
+com\TextMind\model\Model_Message.class
 com\TextMind\swing\Progress.class
 com\TextMind\form\View_Image.class
 com\TextMind\component\Chat_Body$1.class
+com\TextMind\model\Model_Register.class
 com\TextMind\main\main$6.class
 com\TextMind\component\Chat_Item.class
 com\TextMind\main\main.class
@@ -25,8 +27,10 @@ com\TextMind\form\View_Image$1.class
 com\TextMind\event\EventChat.class
 com\TextMind\form\Menu_Left$1.class
 com\TextMind\swing\Progress$ProgressType.class
+com\TextMind\event\EventMessage.class
 com\TextMind\main\main$5.class
 com\TextMind\swing\blurHash\Util.class
+com\TextMind\form\P_Register$4.class
 com\TextMind\form\Chat.class
 com\TextMind\form\View_Image$2.class
 com\TextMind\form\Menu_Left$2.class

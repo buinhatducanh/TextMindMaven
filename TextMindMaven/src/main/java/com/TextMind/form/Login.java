@@ -5,7 +5,9 @@
 package com.TextMind.form;
 
 import com.TextMind.event.EventLogin;
+import com.TextMind.event.EventMessage;
 import com.TextMind.event.PublicEvent;
+import com.TextMind.model.Model_Register;
 
 /**
  *
@@ -41,7 +43,7 @@ public class Login extends javax.swing.JPanel {
             }
 
             @Override
-            public void register() {
+            public void register(Model_Register data, EventMessage message) {
                 System.out.println("Register");
             }
 

@@ -4,7 +4,10 @@
  */
 package com.TextMind.form;
 
+import com.TextMind.event.EventMessage;
 import com.TextMind.event.PublicEvent;
+import com.TextMind.model.Model_Message;
+import com.TextMind.model.Model_Register;
 
 /**
  *
@@ -37,6 +40,7 @@ public class P_Register extends javax.swing.JPanel {
         btnLogin = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtConfirm = new javax.swing.JPasswordField();
+        lblError = new javax.swing.JLabel();
 
         lblTitle.setBackground(new java.awt.Color(0, 132, 245));
         lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
@@ -78,6 +82,8 @@ public class P_Register extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Confirm Password");
 
+        lblError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,6 +104,10 @@ public class P_Register extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +130,9 @@ public class P_Register extends javax.swing.JPanel {
                 .addComponent(btnRegister)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLogin)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -129,7 +141,29 @@ public class P_Register extends javax.swing.JPanel {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        PublicEvent.getInstance().getEventLogin().register();
+        String username = txtUsername.getText().trim() ;
+        String password = String.valueOf(txtPassword.getPassword()) ;
+        String confirmPassword = String.valueOf(txtConfirm.getPassword());
+        if (username.equals("")) {
+            txtUsername.grabFocus();
+        } else if (password.equals("")) {
+            txtPassword.grabFocus();
+        } else if (!password.equals(confirmPassword)) {
+            txtPassword.grabFocus();
+        } else {
+            Model_Register data = new Model_Register(username, password) ;
+            PublicEvent.getInstance().getEventLogin().register(data, new EventMessage() {
+                @Override
+                public void callMessage(Model_Message message) {
+                    if (!message.isAction()) {
+                        lblError.setText(message.getMessage());
+                    } else {
+                        PublicEvent.getInstance().getEventLogin().login();
+                    }
+                }
+                
+            });
+        }        
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -143,6 +177,7 @@ public class P_Register extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPasswordField txtConfirm;
     private javax.swing.JPasswordField txtPassword;

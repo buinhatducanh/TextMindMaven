@@ -45,6 +45,7 @@ public class Chat_Title extends javax.swing.JPanel {
         layer = new javax.swing.JLayeredPane();
         lblName = new javax.swing.JLabel();
         lblStatus = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         layer.setLayout(new java.awt.GridLayout(0, 1));
 
@@ -57,6 +58,11 @@ public class Chat_Title extends javax.swing.JPanel {
         lblStatus.setText("Active Now");
         layer.add(lblStatus);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/report.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -64,16 +70,23 @@ public class Chat_Title extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(layer, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(layer)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLayeredPane layer;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblStatus;

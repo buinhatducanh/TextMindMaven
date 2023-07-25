@@ -75,9 +75,9 @@ public class Menu_Left extends javax.swing.JPanel {
 
         menu.setLayout(new java.awt.GridLayout(1, 3));
 
+        menuMess.setIconSelected(new javax.swing.ImageIcon(getClass().getResource("/images/messSelected.png"))); // NOI18N
         menuMess.setIconSimple(new javax.swing.ImageIcon(getClass().getResource("/images/mess.png"))); // NOI18N
         menuMess.setSelected(true);
-        menuMess.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/messSelected.png"))); // NOI18N
         menuMess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuMessActionPerformed(evt);
@@ -86,6 +86,7 @@ public class Menu_Left extends javax.swing.JPanel {
         menu.add(menuMess);
 
         menuGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/group.png"))); // NOI18N
+        menuGroup.setIconSelected(new javax.swing.ImageIcon(getClass().getResource("/images/groupSelected.png"))); // NOI18N
         menuGroup.setIconSimple(new javax.swing.ImageIcon(getClass().getResource("/images/group.png"))); // NOI18N
         menuGroup.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/groupSelected.png"))); // NOI18N
         menuGroup.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +97,7 @@ public class Menu_Left extends javax.swing.JPanel {
         menu.add(menuGroup);
 
         menuBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/letter.png"))); // NOI18N
+        menuBox.setIconSelected(new javax.swing.ImageIcon(getClass().getResource("/images/letterSelected.png"))); // NOI18N
         menuBox.setIconSimple(new javax.swing.ImageIcon(getClass().getResource("/images/letter.png"))); // NOI18N
         menuBox.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/letterSelected.png"))); // NOI18N
         menuBox.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +127,7 @@ public class Menu_Left extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 159, Short.MAX_VALUE)
+            .addComponent(menu)
             .addComponent(sp)
         );
         layout.setVerticalGroup(
@@ -137,14 +139,14 @@ public class Menu_Left extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuMessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMessActionPerformed
-        if (!menuMess.isSelected()) {
-            menuMess.setSelected(true);
+    private void menuBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBoxActionPerformed
+        if (!menuBox.isSelected()) {
+            menuMess.setSelected(false);
             menuGroup.setSelected(false);
-            menuBox.setSelected(false);
-            showMess();
+            menuBox.setSelected(true);
+            showBox();
         }
-    }//GEN-LAST:event_menuMessActionPerformed
+    }//GEN-LAST:event_menuBoxActionPerformed
 
     private void menuGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGroupActionPerformed
         if (!menuGroup.isSelected()) {
@@ -155,14 +157,14 @@ public class Menu_Left extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_menuGroupActionPerformed
 
-    private void menuBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBoxActionPerformed
-        if (!menuBox.isSelected()) {
-            menuMess.setSelected(false);
+    private void menuMessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMessActionPerformed
+        if (!menuMess.isSelected()) {
+            menuMess.setSelected(true);
             menuGroup.setSelected(false);
-            menuBox.setSelected(true);
-            showBox();
+            menuBox.setSelected(false);
+            showMess();
         }
-    }//GEN-LAST:event_menuBoxActionPerformed
+    }//GEN-LAST:event_menuMessActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

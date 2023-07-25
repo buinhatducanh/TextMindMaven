@@ -4,18 +4,12 @@
  */
 package com.TextMind.event;
 
-import com.TextMind.model.Model_Register;
+import com.TextMind.model.Model_Message;
 
 /**
  *
  * @author KHOA
  */
-public interface EventLogin {
-    public void login();
-
-    public void register(Model_Register data, EventMessage message);
-
-    public void goRegister();
-
-    public void goLogin();
+public interface EventMessage {
+    public void callMessage(Model_Message message);
 }

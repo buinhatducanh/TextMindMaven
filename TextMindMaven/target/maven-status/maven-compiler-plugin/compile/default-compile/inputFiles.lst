@@ -6,6 +6,7 @@ F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\for
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\component\Chat_Left.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\form\View_Image.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\component\Chat_Title.java
+F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\model\Model_Register.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\swing\PictureBox.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\event\EventLogin.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\component\Chat_Image.java
@@ -37,6 +38,8 @@ F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\com
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\event\EventMain.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\swing\PanelSlide.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\component\Chat_Date.java
+F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\model\Model_Message.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\swing\Progress.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\component\MenuButton.java
 F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\swing\JIMSendTextPane.java
+F:\FPT\Ky4\duan1\duan\TextMindMaven\TextMindMaven\src\main\java\com\TextMind\event\EventMessage.java
