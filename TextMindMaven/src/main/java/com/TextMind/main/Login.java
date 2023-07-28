@@ -4,12 +4,14 @@
  */
 package com.TextMind.main;
 
+import static com.TextMind.Socket.SocketManager.getSocket;
 import com.TextMind.event.EventLogin;
 import com.TextMind.event.EventMessage;
 import com.TextMind.event.PublicEvent;
 import com.TextMind.form.P_Login;
 import com.TextMind.form.P_Register;
 import com.TextMind.model.Model_Register;
+import io.socket.client.Socket;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -36,19 +38,6 @@ public class Login extends javax.swing.JFrame {
                 main m = new main() ;
                 m.setVisible(true);
                 setVisible(false) ;
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        PublicEvent.getInstance().getEventMain().showLoading(true);
-//                        try {
-//                            Thread.sleep(3000); //  for test
-//                        } catch (InterruptedException e) {
-//                        }
-//                        PublicEvent.getInstance().getEventMain().showLoading(false);
-//                        PublicEvent.getInstance().getEventMain().initChat();
-//                        setVisible(false);
-//                    }
-//                }).start();
             }
 
             @Override
@@ -68,8 +57,7 @@ public class Login extends javax.swing.JFrame {
         });
         P_Login login = new P_Login() ;
         P_Register register = new P_Register() ;
-        slide.init(login, register) ;
-        
+        slide.init(login, register) ;      
     }
 
     /**

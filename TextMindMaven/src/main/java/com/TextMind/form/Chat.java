@@ -4,12 +4,18 @@
  */
 package com.TextMind.form;
 
+import com.TextMind.Auth.Auth;
+import static com.TextMind.Socket.SocketManager.getSocket;
 import com.TextMind.component.Chat_Body;
 import com.TextMind.component.Chat_Bottom;
 import com.TextMind.component.Chat_Title;
 import com.TextMind.event.EventChat;
 import com.TextMind.event.PublicEvent;
+import io.socket.emitter.Emitter;
 import net.miginfocom.swing.MigLayout;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -33,9 +39,37 @@ public class Chat extends javax.swing.JPanel {
         PublicEvent.getInstance().addEventChat(new EventChat() {
             @Override
             public void sendMessage(String text) {
-                chatBody.addItemRight(text);
+                getSocket().emit("messageSend", Auth.user.getName()+" : "+text.trim());
+                
+            }
+
+            public void receiveMessage() {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         });
+        getSocket().on("messageGet", new Emitter.Listener() {
+                    @Override
+                    public void call(Object... os) {
+                        System.out.println("getMEss");
+                        String jsonString = os[0].toString();
+                        try {
+                            JSONArray jsonArray = new JSONArray(jsonString);
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String name = jsonObject.optString("name");
+                                    String message = jsonObject.optString("message");
+                                    if(name.trim().equalsIgnoreCase(Auth.user.getName()))
+                                        {
+                                            chatBody.addItemRight(message);
+                                        }
+                                    else{
+                                            chatBody.addItemLeft(message,name);
+                                    }
+                                }
+                            } catch (JSONException e) {
+                            }
+                    }
+                });
         add(chatTitle, "wrap");
         add(chatBody, "wrap");
         add(chatBottom, "h ::50%");

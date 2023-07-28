@@ -23,7 +23,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="txtName" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="79" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -32,14 +32,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="txtName" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="429" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="txtName">
       <Properties>
         <Property name="text" type="java.lang.String" value="Menu_Right_Note"/>
       </Properties>

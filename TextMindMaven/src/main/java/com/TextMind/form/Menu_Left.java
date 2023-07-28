@@ -4,6 +4,7 @@
  */
 package com.TextMind.form;
 
+import com.TextMind.DAO.UserDAO;
 import com.TextMind.component.Item_People;
 import com.TextMind.swing.ScrollBar;
 import net.miginfocom.swing.MigLayout;
@@ -12,26 +13,27 @@ import net.miginfocom.swing.MigLayout;
  *
  * @author KHOA
  */
-public class Menu_Left extends javax.swing.JPanel {
-
+public class Menu_Left extends javax.swing.JPanel implements UserDAO.ListUpdateListener {
+    private UserDAO listFriend = new UserDAO();
     /**
      * Creates new form Menu_Left
      */
     public Menu_Left() {
         initComponents();
         init() ;
+        listFriend.setListUpdateListener((UserDAO.ListUpdateListener) this);
     }
     
     private void init() {
         sp.setVerticalScrollBar(new ScrollBar());
         menuList.setLayout(new MigLayout("fillx", "0[]0", "0[]0"));
-        showMess();
     }
 
     private void showMess() {
         menuList.removeAll();
-        for (int i = 0; i < 20; i++) {
-            menuList.add(new Item_People("People " + i), "wrap");
+        System.out.println(listFriend.getListFriend().size());
+        for (int i = 0; i < listFriend.getListFriend().size(); i++) {
+            menuList.add(new Item_People(listFriend.getListFriend().get(i).getName()), "wrap");
         }
         refreshMenuList();
     }
@@ -55,6 +57,11 @@ public class Menu_Left extends javax.swing.JPanel {
     private void refreshMenuList() {
         menuList.repaint();
         menuList.revalidate();
+    }
+    
+    
+    public void onListUpdated() {
+        showMess();
     }
 
     /**

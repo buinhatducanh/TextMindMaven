@@ -4,7 +4,14 @@
  */
 package com.TextMind.form;
 
+import com.TextMind.Auth.Auth;
+import static com.TextMind.Socket.SocketManager.getSocket;
+import com.TextMind.entity.User;
 import com.TextMind.event.PublicEvent;
+import io.socket.emitter.Emitter;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -17,6 +24,56 @@ public class P_Login extends javax.swing.JPanel {
      */
     public P_Login() {
         initComponents();
+        init();
+    }
+    
+    private User validateLogin(){
+        try{
+        String username = txtUsername.getText();
+        String password = new String(txtPassword.getPassword());
+        if(!username.isBlank() || !password.isBlank())
+        {
+            return new User(username,password);
+        }
+        else{
+            return null;
+        }
+      }
+        catch(Exception e){
+            return null;
+        }
+    }
+    
+    private void init(){
+       getSocket().on("signInSuccess",new Emitter.Listener() {
+            @Override
+            public void call(Object... os) {
+                String jsonString = os[0].toString();
+                try {
+                    JSONObject jsonObject = new JSONObject(jsonString);
+                    String name = jsonObject.optString("name");
+                    String username = jsonObject.optString("username");
+                    String password = jsonObject.optString("password");
+                    String uID = jsonObject.optString("uID");
+                    
+                    Auth.user = new User(uID,name,username,password);
+                    
+                    PublicEvent.getInstance().getEventLogin().login();
+                } catch (JSONException e) {
+                    System.out.println(e);
+                }
+            }
+        });
+
+            // Handle sign-in error event
+       getSocket().on("signInError", args -> {
+            String errorMessage = (String) args[0];
+            System.out.println(errorMessage);
+        });
+       
+       getSocket().on(getSocket().EVENT_CONNECT, (Object... os) -> {
+            System.out.println("connection");
+        });
     }
 
     /**
@@ -118,7 +175,13 @@ public class P_Login extends javax.swing.JPanel {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        PublicEvent.getInstance().getEventLogin().login();
+        if(validateLogin()!=null){
+            getSocket().emit("signIn", validateLogin().getUsername()+" : "+validateLogin().getPassword());            
+        }
+        else{
+            System.out.println("null");
+        }
+        
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed

@@ -10,6 +10,7 @@ com\TextMind\main\Login$4.class
 com\TextMind\main\main$3.class
 com\TextMind\model\Model_Message.class
 com\TextMind\swing\Progress.class
+com\TextMind\form\P_Login$4.class
 com\TextMind\form\View_Image.class
 com\TextMind\component\Chat_Body$1.class
 com\TextMind\model\Model_Register.class
@@ -17,15 +18,18 @@ com\TextMind\main\main$6.class
 com\TextMind\component\Chat_Item.class
 com\TextMind\main\main.class
 com\TextMind\form\Login1.class
+com\TextMind\Socket\SocketManager.class
 com\TextMind\swing\Line.class
 com\TextMind\component\Chat_Image.class
 com\TextMind\swing\PanelSlide$1.class
+com\TextMind\form\Chat$2.class
 com\TextMind\swing\blurHash\SRGB.class
 com\TextMind\form\P_Login$3.class
 com\TextMind\form\Login1$1$1.class
 com\TextMind\event\EventMain.class
 com\TextMind\main\Login$2.class
 com\TextMind\main\Login$1.class
+com\TextMind\DAO\UserDAO$1.class
 com\TextMind\form\View_Image$1.class
 com\TextMind\event\EventChat.class
 com\TextMind\form\Menu_Left$1.class
@@ -35,6 +39,7 @@ com\TextMind\main\main$5.class
 com\TextMind\swing\blurHash\Util.class
 com\TextMind\main\Login.class
 com\TextMind\form\Chat.class
+com\TextMind\component\Chat_Body$2.class
 com\TextMind\form\View_Image$2.class
 com\TextMind\form\Menu_Left$2.class
 com\TextMind\form\P_Login$2.class
@@ -45,7 +50,9 @@ com\TextMind\component\Chat_Bottom.class
 com\TextMind\component\Image_Item.class
 com\TextMind\form\P_Register.class
 com\TextMind\main\main$4.class
+com\TextMind\DAO\UserDAO.class
 com\TextMind\form\Loading.class
+com\TextMind\Query\Querry.class
 com\TextMind\swing\JIMSendTextPane.class
 com\TextMind\component\Item_People$1.class
 com\TextMind\component\MenuButton.class
@@ -55,6 +62,7 @@ com\TextMind\swing\ModernScrollBarUI.class
 com\TextMind\main\main$7.class
 com\TextMind\swing\JIMSendTextPane$WarpColumnFactory.class
 com\TextMind\swing\ImageAvatar.class
+com\TextMind\Auth\Auth.class
 com\TextMind\event\EventLogin.class
 com\TextMind\form\P_Register$2.class
 com\TextMind\form\Menu_Left$3.class
@@ -79,6 +87,7 @@ com\TextMind\component\Chat_Date.class
 com\TextMind\event\EventImageView.class
 com\TextMind\swing\JIMSendTextPane$WarpLabelView.class
 com\TextMind\component\Chat_File.class
+com\TextMind\entity\User.class
 com\TextMind\main\main$1.class
 com\TextMind\form\P_Login.class
 com\TextMind\component\Chat_Image$1.class

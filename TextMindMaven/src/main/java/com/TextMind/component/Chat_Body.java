@@ -4,15 +4,24 @@
  */
 package com.TextMind.component;
 
+import com.TextMind.Auth.Auth;
+import static com.TextMind.Socket.SocketManager.getSocket;
+import com.TextMind.form.Menu_Left;
 import com.TextMind.swing.ScrollBar;
+import io.socket.emitter.Emitter;
 import java.awt.Adjustable;
 import java.awt.Color;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollBar;
 import net.miginfocom.swing.MigLayout;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -26,29 +35,14 @@ public class Chat_Body extends javax.swing.JPanel {
     public Chat_Body() {
         initComponents();
         init() ;
-        addItemLeft("hello\nhellooo\nheloolololo", "Hoàn");
-        addItemRight("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.") ; 
-        addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", "Nhân") ; 
-        addItemRight("hello\nhellooo\nheloolololo");
-        addItemLeft("hello\nhellooo\nheloolololo", "Hoàn", new ImageIcon(getClass().getResource("/images/avatar.jpg")));
-        addDate("01/01/2025") ;
-        String img[] = {"LQOx%oMx}Y%NDhtR-;Vs$,jER4SO"};
-        addItemRight("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", new ImageIcon(getClass().getResource("/images/avatar.jpg"))) ; 
-        addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", "Nhân", new ImageIcon(getClass().getResource("/images/avatar.jpg")), new ImageIcon(getClass().getResource("/images/avatar.jpg"))) ; 
-        addItemRight("hello\nhellooo\nheloolololo");
-        addItemLeft("hello\nhellooo\nheloolololo", "Hoàn", img);
-        addDate("Today") ;
-        addItemRight("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.") ; 
-        addItemLeft("Tạm biệt năm học 2011 - 2012 và đây là bài hát dành cho các bạn 1997 từ 9 lên 10 cùng với đó là các bạn 1994 từ nay sẽ rời xa mái trường Cấp 3.", "Nhân") ; 
-        addItemRight("hello\nhellooo\nheloolololo", new ImageIcon(getClass().getResource("/images/avatar.jpg")));
-        addItemFile("Gửi chơi", "Nhân Chần", "tiểu mu.exe", "1 TB") ;
-        addItemFileRight("Gửi lại", "mủ tiêu.exe", "10 MB") ;
+
     }
     
     private void init() {
         body.setLayout(new MigLayout("fillx", "", "5[]5")); 
         sp.setVerticalScrollBar(new ScrollBar());
         sp.getVerticalScrollBar().setBackground(Color.WHITE);
+//                fillMess();
     }
     
     public void addItemLeft(String text, String user, Icon... image) {
@@ -124,6 +118,41 @@ public class Chat_Body extends javax.swing.JPanel {
         };
         verticalBar.addAdjustmentListener(downScroller);
     }
+    
+    private void fillMess(){
+        JSONObject requestData = new JSONObject();
+        try {
+            requestData.put("request", true);
+        } catch (JSONException ex) {
+            Logger.getLogger(Menu_Left.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        getSocket().emit("LoadMess", requestData);
+//        getSocket().connect();
+        getSocket().once("messToSwing", new Emitter.Listener() {
+            @Override
+            public void call(Object... os) {
+                String jsonString = os[0].toString();
+                try {
+                    JSONArray jsonArray = new JSONArray(jsonString);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String name = jsonObject.optString("name");
+                        String message = jsonObject.optString("message");
+                        if(name.trim().equalsIgnoreCase(Auth.user.getName()))
+                            {
+                                addItemRight(message);
+                            }
+                        else{
+                            addItemLeft(message,name);
+                        }
+                    }
+                } catch (JSONException e) {
+                }
+            }
+        });
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

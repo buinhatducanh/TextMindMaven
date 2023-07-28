@@ -4,6 +4,8 @@
  */
 package com.TextMind.form;
 
+import com.TextMind.Auth.Auth;
+
 /**
  *
  * @author KHOA
@@ -15,6 +17,11 @@ public class Menu_Right extends javax.swing.JPanel {
      */
     public Menu_Right() {
         initComponents();
+        init();
+    }
+    
+    private void init(){
+        txtName.setText(Auth.user.getName());
     }
 
     /**
@@ -26,11 +33,11 @@ public class Menu_Right extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        txtName = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(249, 249, 249));
 
-        jLabel1.setText("Menu_Right_Note");
+        txtName.setText("Menu_Right_Note");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -38,20 +45,20 @@ public class Menu_Right extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel1)
+                .addComponent(txtName)
                 .addContainerGap(79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(135, 135, 135)
-                .addComponent(jLabel1)
+                .addComponent(txtName)
                 .addContainerGap(429, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel txtName;
     // End of variables declaration//GEN-END:variables
 }
