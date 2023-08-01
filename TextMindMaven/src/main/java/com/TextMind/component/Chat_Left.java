@@ -38,8 +38,8 @@ public class Chat_Left extends javax.swing.JLayeredPane  {
         txt.setImage(false, image);
     }
 
-    public void setTime() {
-        txt.setTime("10:30 PM");   
+    public void setTime(String date) {
+        txt.setTime(date);   
     }
 
     /**

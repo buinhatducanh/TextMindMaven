@@ -9,9 +9,12 @@ import static com.TextMind.Socket.SocketManager.getSocket;
 import com.TextMind.component.Chat_Body;
 import com.TextMind.component.Chat_Bottom;
 import com.TextMind.component.Chat_Title;
+import com.TextMind.entity.User;
 import com.TextMind.event.EventChat;
 import com.TextMind.event.PublicEvent;
 import io.socket.emitter.Emitter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import net.miginfocom.swing.MigLayout;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +25,10 @@ import org.json.JSONObject;
  * @author KHOA
  */
 public class Chat extends javax.swing.JPanel {
+    private Chat_Title chatTitle;
+    private Chat_Body chatBody;
+    private Chat_Bottom chatBottom;
+    private User friend;
 
     /**
      * Creates new form Menu_Left
@@ -32,49 +39,64 @@ public class Chat extends javax.swing.JPanel {
     }
     
     private void init() {
-        setLayout(new MigLayout("fillx", "0[fill]0", "0[]0[100%, bottom]0[shrink 0]0"));
-        Chat_Title chatTitle = new Chat_Title();
-        Chat_Body chatBody = new Chat_Body();
-        Chat_Bottom chatBottom = new Chat_Bottom();
+        setLayout(new MigLayout("fillx", "0[fill]0", "0[]0[100%, fill]0[shrink 0]0"));        chatTitle = new Chat_Title();
+        chatBody = new Chat_Body();
+        chatBottom = new Chat_Bottom();
         PublicEvent.getInstance().addEventChat(new EventChat() {
             @Override
             public void sendMessage(String text) {
-                getSocket().emit("messageSend", Auth.user.getName()+" : "+text.trim());
-                
+                JSONObject messDataSend = new JSONObject();
+                try {
+                    messDataSend.put("uidTo", friend.getuID());
+                    messDataSend.put("uidFrom", Auth.user.getuID());
+                    messDataSend.put("message", text.trim());
+                    messDataSend.put("name", Auth.user.getName());
+                    Date now = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                    
+                    chatBody.addItemRight(messDataSend.getString("message"),sdf.format(now));
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                }
+                getSocket().emit("messageSend",messDataSend);
             }
 
-            public void receiveMessage() {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        });
+        getSocket().on(Auth.user.getuID(), new Emitter.Listener() {
+            @Override
+            public void call(Object... os) {
+                try {
+                    String jsonString = (String) os[0];
+                    JSONObject messDataSend = new JSONObject(jsonString);
+
+                    String name = messDataSend.optString("name");
+                    String message = messDataSend.optString("message");
+                    String date = messDataSend.optString("date");
+                    if (name.trim().equalsIgnoreCase(Auth.user.getName())) {
+                        chatBody.addItemRight(message,date);
+                    } else {
+                        chatBody.addItemLeft(message, name,date);
+                    }
+                } catch (JSONException e) {
+                    System.out.println(e);
+                }
             }
         });
-        getSocket().on("messageGet", new Emitter.Listener() {
-                    @Override
-                    public void call(Object... os) {
-                        System.out.println("getMEss");
-                        String jsonString = os[0].toString();
-                        try {
-                            JSONArray jsonArray = new JSONArray(jsonString);
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                    String name = jsonObject.optString("name");
-                                    String message = jsonObject.optString("message");
-                                    if(name.trim().equalsIgnoreCase(Auth.user.getName()))
-                                        {
-                                            chatBody.addItemRight(message);
-                                        }
-                                    else{
-                                            chatBody.addItemLeft(message,name);
-                                    }
-                                }
-                            } catch (JSONException e) {
-                            }
-                    }
-                });
+
+
         add(chatTitle, "wrap");
         add(chatBody, "wrap");
         add(chatBottom, "h ::50%");
     }
+    
 
+    public void setUser(User user) {
+        friend = user;
+        chatTitle.setUserName(friend.getName());
+        chatBody.clearChat();
+        chatBody.setuIDFriend(friend.getuID());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

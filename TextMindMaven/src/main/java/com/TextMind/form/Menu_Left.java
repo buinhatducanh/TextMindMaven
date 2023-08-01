@@ -5,16 +5,26 @@
 package com.TextMind.form;
 
 import com.TextMind.DAO.UserDAO;
+import static com.TextMind.Socket.SocketManager.getSocket;
 import com.TextMind.component.Item_People;
+import com.TextMind.entity.User;
 import com.TextMind.swing.ScrollBar;
+import io.socket.emitter.Emitter;
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.miginfocom.swing.MigLayout;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 /**
  *
  * @author KHOA
  */
 public class Menu_Left extends javax.swing.JPanel implements UserDAO.ListUpdateListener {
-    private UserDAO listFriend = new UserDAO();
+    private UserDAO listFriend;
+    
     /**
      * Creates new form Menu_Left
      */
@@ -22,18 +32,25 @@ public class Menu_Left extends javax.swing.JPanel implements UserDAO.ListUpdateL
         initComponents();
         init() ;
         listFriend.setListUpdateListener((UserDAO.ListUpdateListener) this);
+        
     }
     
     private void init() {
+        listFriend = new UserDAO();
         sp.setVerticalScrollBar(new ScrollBar());
         menuList.setLayout(new MigLayout("fillx", "0[]0", "0[]0"));
     }
 
     private void showMess() {
         menuList.removeAll();
-        System.out.println(listFriend.getListFriend().size());
-        for (int i = 0; i < listFriend.getListFriend().size(); i++) {
-            menuList.add(new Item_People(listFriend.getListFriend().get(i).getName()), "wrap");
+        for (User friendData : listFriend.getListFriend()) {
+            Item_People friend = new Item_People(friendData);
+            if(listFriend.getListFriendOnline().contains(friendData.getuID()))
+            {   
+                System.out.println(friendData.getName());
+                friend.setActive(true);
+            }
+            menuList.add(friend, "wrap");
         }
         refreshMenuList();
     }
@@ -41,7 +58,7 @@ public class Menu_Left extends javax.swing.JPanel implements UserDAO.ListUpdateL
     private void showGroup() {
         menuList.removeAll();
         for (int i = 0; i < 15; i++) {
-            menuList.add(new Item_People("Group " + i), "wrap");
+//            menuList.add(new Item_People("Group " + i), "wrap");
         }
         refreshMenuList();
     }
@@ -49,7 +66,7 @@ public class Menu_Left extends javax.swing.JPanel implements UserDAO.ListUpdateL
     private void showBox() {
         menuList.removeAll();
         for (int i = 0; i < 10; i++) {
-            menuList.add(new Item_People("Box " + i), "wrap");
+//            menuList.add(new Item_People("Box " + i), "wrap");
         }
         refreshMenuList();
     }
@@ -62,6 +79,40 @@ public class Menu_Left extends javax.swing.JPanel implements UserDAO.ListUpdateL
     
     public void onListUpdated() {
         showMess();
+        getSocket().on("getSignInStatus", new Emitter.Listener() {
+            @Override
+            public void call(Object... os) {
+                ArrayList<String> listOnline = new ArrayList<>();
+                JSONArray jsonArray = (JSONArray) os[0];
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    try {
+                        String uIDFriend = jsonArray.getString(i);
+                        if (!listFriend.getListFriend().contains(uIDFriend)) {
+                            System.out.println(uIDFriend);
+                            listOnline.add(uIDFriend);
+                        }
+                    } catch (JSONException ex) {
+                        Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+                updateOnlineFriends(listOnline);
+            }
+        });
+    }
+    
+    public void updateOnlineFriends(ArrayList<String> onlineFriends) {
+        for (Component component : menuList.getComponents()) {
+            if (component instanceof Item_People) {
+                
+                Item_People friend = (Item_People) component;
+                String friendID = friend.getFriend().getuID();
+                // Check if the friend's ID is in the online list
+                boolean isOnline = onlineFriends.contains(friendID);
+                friend.setActive(isOnline);
+            }
+        }
+        refreshMenuList();
     }
 
     /**

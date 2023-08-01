@@ -4,6 +4,7 @@
  */
 package com.TextMind.main;
 
+import com.TextMind.entity.User;
 import com.TextMind.event.EventImageView;
 import com.TextMind.event.EventMain;
 import com.TextMind.event.PublicEvent;
@@ -70,6 +71,11 @@ public class main extends javax.swing.JFrame {
             @Override
             public void initChat() {
                 home.setVisible(true);
+            }
+
+            @Override
+            public void selectUser(User user) {
+                home.setUser(user);
             }
         });
         PublicEvent.getInstance().addEventImageView(new EventImageView() {

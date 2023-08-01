@@ -28,7 +28,7 @@ import org.json.JSONObject;
  * @author KHOA
  */
 public class Chat_Body extends javax.swing.JPanel {
-
+    private String uIDFriend;
     /**
      * Creates new form Chat_Body
      */
@@ -37,19 +37,24 @@ public class Chat_Body extends javax.swing.JPanel {
         init() ;
 
     }
+
+    public void setuIDFriend(String uIDFriend) {
+        this.uIDFriend = uIDFriend;
+        fillMess();
+    }
     
     private void init() {
         body.setLayout(new MigLayout("fillx", "", "5[]5")); 
         sp.setVerticalScrollBar(new ScrollBar());
         sp.getVerticalScrollBar().setBackground(Color.WHITE);
-//                fillMess();
+       
     }
     
-    public void addItemLeft(String text, String user, Icon... image) {
+    public void addItemLeft(String text, String user,String date, Icon... image) {
         Chat_Left_With_Profile item = new Chat_Left_With_Profile();
         item.setText(text);
         item.setImage(image);
-        item.setTime();
+        item.setTime(date);
         item.setUserProfile(user);
         body.add(item, "wrap, w 100::80%");
         body.repaint();
@@ -60,21 +65,21 @@ public class Chat_Body extends javax.swing.JPanel {
         Chat_Left_With_Profile item = new Chat_Left_With_Profile();
         item.setText(text);
         item.setImage(image);
-        item.setTime();
+//        item.setTime(date);
         item.setUserProfile(user);
         body.add(item, "wrap, w 100::80%"); 
         body.repaint();
         body.revalidate();
     }
     
-    public void addItemRight(String text, Icon... image) {
+    public void addItemRight(String text,String date, Icon... image) {
         Chat_Right item = new Chat_Right();
         item.setText(text);
+        item.setTime(date);
         item.setImage(image);
         body.add(item, "wrap, al right, w 100::80%");
         body.repaint();
         body.revalidate();
-        item.setTime();
         scrollToBottom() ;
     }
     
@@ -90,7 +95,7 @@ public class Chat_Body extends javax.swing.JPanel {
         Chat_Left_With_Profile item = new Chat_Left_With_Profile();
         item.setText(text);
         item.setFile(fileName, fileSize);
-        item.setTime();
+//        item.setTime();
         item.setUserProfile(user);
         body.add(item, "wrap, w 100::80%");
         body.repaint();
@@ -122,13 +127,13 @@ public class Chat_Body extends javax.swing.JPanel {
     private void fillMess(){
         JSONObject requestData = new JSONObject();
         try {
-            requestData.put("request", true);
+            requestData.put("uidTo", uIDFriend); // Replace "destinationUserID" with the actual destination user's ID
+            requestData.put("uidFrom", Auth.user.getuID());
         } catch (JSONException ex) {
             Logger.getLogger(Menu_Left.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         getSocket().emit("LoadMess", requestData);
-//        getSocket().connect();
         getSocket().once("messToSwing", new Emitter.Listener() {
             @Override
             public void call(Object... os) {
@@ -139,12 +144,13 @@ public class Chat_Body extends javax.swing.JPanel {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String name = jsonObject.optString("name");
                         String message = jsonObject.optString("message");
+                        String date = jsonObject.optString("date");
                         if(name.trim().equalsIgnoreCase(Auth.user.getName()))
                             {
-                                addItemRight(message);
+                                addItemRight(message,date);
                             }
                         else{
-                            addItemLeft(message,name);
+                            addItemLeft(message,name,date);
                         }
                     }
                 } catch (JSONException e) {
@@ -153,6 +159,11 @@ public class Chat_Body extends javax.swing.JPanel {
         });
     }
 
+    public void clearChat() {
+        body.removeAll();
+        repaint();
+        revalidate();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -10,7 +10,7 @@ package com.TextMind.entity;
  */
 public class User {
     private String uID,name,username,password;
-
+    private boolean isOnline;
     public User() {
     }
 
@@ -20,12 +20,16 @@ public class User {
         this.password = password;
     }
 
+    public User(String uID, String name,boolean isOnline) {
+        this.uID = uID;
+        this.name = name;
+        this.isOnline = isOnline;
+    }
+    
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
-    
-    
 
     public String getName() {
         return name;

@@ -47,7 +47,7 @@ public class Chat_Bottom extends javax.swing.JPanel {
             }
         });
         txt.setBorder(new EmptyBorder(5, 5, 5, 5));
-        txt.setHintText("Nhập gì đi anh iu ...");
+        txt.setHintText("Nhập tin nhắn ...");
         scroll.setViewportView(txt);
         ScrollBar sb = new ScrollBar();
         sb.setBackground(new Color(229, 229, 229));
