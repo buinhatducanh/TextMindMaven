@@ -64,11 +64,12 @@ public class P_Login extends javax.swing.JPanel {
         login.setLayout(new MigLayout("wrap", "push[center]push", "30[]35[]10[]50[]25[]push"));
         JLabel label = new JLabel("Sign In");
         label.setFont(new Font("sansserif", 1, 30));
-        label.setForeground(new Color(7, 164, 121));
+        label.setForeground(new Color(204, 255, 255));
         login.add(label);
 
         txtUsername.setPrefixIcon(new ImageIcon(getClass().getResource("/images/mail.png")));
         txtUsername.setHint("Username");
+        
         login.add(txtUsername, "w 90%");
 
         txtPassword.setPrefixIcon(new ImageIcon(getClass().getResource("/images/pass.png")));
@@ -76,11 +77,11 @@ public class P_Login extends javax.swing.JPanel {
         login.add(txtPassword, "w 90%");
 
         btnLogin.setText("Login");
-        btnLogin.setBackground(new Color(7, 164, 121));
+        btnLogin.setBackground(new Color(0, 130, 130));
         btnLogin.setForeground(new Color(250, 250, 250));
         login.add(btnLogin, "w 40%, h 40");
         btnRegister.setText("Register");
-        btnRegister.setBackground(new Color(7, 164, 121));
+        btnRegister.setBackground(new Color(0, 130, 130));
         btnRegister.setForeground(new Color(250, 250, 250));
         login.add(btnRegister, "w 40%, h 40");
     }
@@ -137,6 +138,8 @@ public class P_Login extends javax.swing.JPanel {
         btnLogin = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
 
+        login.setBackground(new java.awt.Color(0, 153, 153));
+
         btnLogin.setForeground(new java.awt.Color(0, 132, 245));
         btnLogin.setText("Login");
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -175,7 +178,7 @@ public class P_Login extends javax.swing.JPanel {
         loginLayout.setVerticalGroup(
             loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
-                .addContainerGap(150, Short.MAX_VALUE)
+                .addContainerGap(156, Short.MAX_VALUE)
                 .addComponent(btnLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegister)
@@ -190,9 +193,7 @@ public class P_Login extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
