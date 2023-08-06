@@ -118,7 +118,7 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f5" green="84" red="0" type="rgb"/>
+              <Color blue="0" green="66" red="0" type="rgb"/>
             </Property>
           </Properties>
 
@@ -162,6 +162,11 @@
               </Layout>
               <SubComponents>
                 <Container class="com.TextMind.swing.PanelSlide" name="slide">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="ff" red="99" type="rgb"/>
+                    </Property>
+                  </Properties>
 
                   <Layout>
                     <DimensionLayout dim="0">

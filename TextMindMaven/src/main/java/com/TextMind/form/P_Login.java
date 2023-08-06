@@ -8,8 +8,18 @@ import com.TextMind.Auth.Auth;
 import static com.TextMind.Socket.SocketManager.getSocket;
 import com.TextMind.entity.User;
 import com.TextMind.event.PublicEvent;
+import com.TextMind.swing.MyPasswordField;
+import com.TextMind.swing.MyTextField;
 import io.socket.emitter.Emitter;
-import org.json.JSONArray;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import net.miginfocom.swing.MigLayout;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,33 +29,68 @@ import org.json.JSONObject;
  */
 public class P_Login extends javax.swing.JPanel {
 
+    MyTextField txtUsername = new MyTextField();
+    MyPasswordField txtPassword = new MyPasswordField();
+    Button cmd = new Button();
+
     /**
      * Creates new form P_Login
      */
     public P_Login() {
         initComponents();
         init();
+
+        initLogin();
     }
-    
-    private User validateLogin(){
-        try{
-        String username = txtUsername.getText();
-        String password = new String(txtPassword.getPassword());
-        if(!username.isBlank() || !password.isBlank())
-        {
-            return new User(username,password);
+    private User validateLogin() {
+        try {
+            if (txtUsername != null && txtPassword != null) {
+                String username = txtUsername.getText();
+                String password = new String(txtPassword.getPassword());
+
+                if (!username.trim().isEmpty() && !password.trim().isEmpty()) {
+                    return new User(username, password);
+                } else {
+                    JOptionPane.showMessageDialog(null,"Username or password is blank!", "Alert",JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        else{
-            return null;
-        }
-      }
-        catch(Exception e){
-            return null;
-        }
+
+        return null;
     }
+    private void initLogin() {
+        login.setLayout(new MigLayout("wrap", "push[center]push", "30[]35[]10[]50[]25[]push"));
+        JLabel label = new JLabel("Sign In");
+        label.setFont(new Font("sansserif", 1, 30));
+        label.setForeground(new Color(7, 164, 121));
+        login.add(label);
+
+        txtUsername.setPrefixIcon(new ImageIcon(getClass().getResource("/images/mail.png")));
+        txtUsername.setHint("Username");
+        login.add(txtUsername, "w 90%");
+
+        txtPassword.setPrefixIcon(new ImageIcon(getClass().getResource("/images/pass.png")));
+        txtPassword.setHint("Password");
+        login.add(txtPassword, "w 90%");
+
+        btnLogin.setText("Login");
+        btnLogin.setBackground(new Color(7, 164, 121));
+        btnLogin.setForeground(new Color(250, 250, 250));
+        login.add(btnLogin, "w 40%, h 40");
+        btnRegister.setText("Register");
+        btnRegister.setBackground(new Color(7, 164, 121));
+        btnRegister.setForeground(new Color(250, 250, 250));
+        login.add(btnRegister, "w 40%, h 40");
+    }
+                                  
     
-    private void init(){
-       getSocket().on("signInSuccess",new Emitter.Listener() {
+    
+    
+    
+    private void init() {
+        getSocket().on("signInSuccess", new Emitter.Listener() {
             @Override
             public void call(Object... os) {
                 String jsonString = os[0].toString();
@@ -55,9 +100,9 @@ public class P_Login extends javax.swing.JPanel {
                     String username = jsonObject.optString("username");
                     String password = jsonObject.optString("password");
                     String uID = jsonObject.optString("uID");
-                    
-                    Auth.user = new User(uID,name,username,password);
-                    
+
+                    Auth.user = new User(uID, name, username, password);
+
                     PublicEvent.getInstance().getEventLogin().login();
                 } catch (JSONException e) {
                     System.out.println(e);
@@ -65,17 +110,20 @@ public class P_Login extends javax.swing.JPanel {
             }
         });
 
-            // Handle sign-in error event
-       getSocket().on("signInError", args -> {
+        // Handle sign-in error event
+        getSocket().on("signInError", args -> {
             String errorMessage = (String) args[0];
             System.out.println(errorMessage);
         });
-       
-       getSocket().on(getSocket().EVENT_CONNECT, (Object... os) -> {
+
+        getSocket().on(getSocket().EVENT_CONNECT, (Object... os) -> {
             System.out.println("connection");
         });
     }
-
+    
+    public void buttonEntered(){
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,35 +133,18 @@ public class P_Login extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblTitle = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
+        login = new javax.swing.JPanel();
         btnLogin = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
-
-        lblTitle.setBackground(new java.awt.Color(0, 132, 245));
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        lblTitle.setForeground(new java.awt.Color(0, 132, 245));
-        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("LOGIN");
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Username");
-
-        txtUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsernameActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Password");
 
         btnLogin.setForeground(new java.awt.Color(0, 132, 245));
         btnLogin.setText("Login");
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLoginMouseEntered(evt);
+            }
+        });
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -130,72 +161,62 @@ public class P_Login extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout loginLayout = new javax.swing.GroupLayout(login);
+        login.setLayout(loginLayout);
+        loginLayout.setHorizontalGroup(
+            loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        loginLayout.setVerticalGroup(
+            loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
+                .addContainerGap(150, Short.MAX_VALUE)
+                .addComponent(btnLogin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRegister)
+                .addGap(15, 15, 15))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtPassword)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lblTitle)
-                .addGap(43, 43, 43)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(btnLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRegister)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsernameActionPerformed
-
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        if(validateLogin()!=null){
-            getSocket().emit("signIn", validateLogin().getUsername()+" : "+validateLogin().getPassword());            
-        }
-        else{
+        if (validateLogin() != null) {
+            getSocket().emit("signIn", validateLogin().getUsername() + " : " + validateLogin().getPassword());
+        } else {
             System.out.println("null");
         }
-        
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         PublicEvent.getInstance().getEventLogin().goRegister();
     }//GEN-LAST:event_btnRegisterActionPerformed
 
+    private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered
+       buttonEntered();
+    }//GEN-LAST:event_btnLoginMouseEntered
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel lblTitle;
-    private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUsername;
+    private javax.swing.JPanel login;
     // End of variables declaration//GEN-END:variables
 }

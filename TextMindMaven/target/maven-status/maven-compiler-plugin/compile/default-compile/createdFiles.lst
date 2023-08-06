@@ -10,8 +10,8 @@ com\TextMind\main\Login$4.class
 com\TextMind\main\main$3.class
 com\TextMind\model\Model_Message.class
 com\TextMind\swing\Progress.class
-com\TextMind\form\P_Login$4.class
 com\TextMind\form\View_Image.class
+com\TextMind\swing\MyPasswordField.class
 com\TextMind\component\Chat_Body$1.class
 com\TextMind\model\Model_Register.class
 com\TextMind\main\main$6.class
@@ -42,6 +42,7 @@ com\TextMind\form\Chat.class
 com\TextMind\component\Chat_Body$2.class
 com\TextMind\form\View_Image$2.class
 com\TextMind\form\Menu_Left$2.class
+com\TextMind\DAO\UserDAO$ListUpdateListener.class
 com\TextMind\form\P_Login$2.class
 com\TextMind\swing\JIMSendTextPane$WarpEditorKit.class
 com\TextMind\swing\ProgressCircleUI.class
@@ -68,6 +69,7 @@ com\TextMind\form\P_Register$2.class
 com\TextMind\form\Menu_Left$3.class
 com\TextMind\swing\ScrollBar.class
 com\TextMind\main\Login$6.class
+com\TextMind\swing\MyTextField.class
 com\TextMind\main\Login$3.class
 com\TextMind\form\Menu_Left.class
 com\TextMind\form\P_Register$1.class

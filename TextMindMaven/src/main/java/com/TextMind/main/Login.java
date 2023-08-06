@@ -112,7 +112,9 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel2))
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 132, 245));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 0));
+
+        slide.setBackground(new java.awt.Color(153, 255, 204));
 
         javax.swing.GroupLayout slideLayout = new javax.swing.GroupLayout(slide);
         slide.setLayout(slideLayout);
